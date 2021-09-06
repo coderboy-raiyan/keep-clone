@@ -40,17 +40,37 @@ function createDivNotes(titleInput, notesInput) {
   let col = document.createElement("div");
   col.className = "col-12 col-md-4 col-lg-4";
   col.innerHTML = `
-  <div class="card animate__animated animate__fadeInDown" style="width: 100%; height: 100%">
+  <div class="card animate__animated animate__fadeInDown main-card" style="width: 100%; height: 100%">
             <div class="card-body">
-              <h5 class="card-title">${titleInput}</h5>
-              <p class="card-text">
+              <h5 class="card-title" onclick="editTitle()">${titleInput}</h5>
+              <p class="card-text" onclick="editDes()">
                ${notesInput}
               </p>
-              <button class="btn btn-warning">Delete</button>
+              <button class="btn btn-warning" onclick="delNote()">Delete</button>
             </div>
           </div>
   `;
   allNotes.appendChild(col);
+}
+
+function editTitle() {
+  let cardtitle = document.querySelectorAll(".card-title");
+  cardtitle.forEach((card) => {
+    card.setAttribute("contenteditable", "true");
+    card.classList.add("outline");
+  });
+}
+function editDes() {
+  let cardDes = document.querySelectorAll(".card-text");
+  cardDes.forEach((card) => {
+    card.setAttribute("contenteditable", "true");
+    card.classList.add("outline");
+  });
+}
+
+function delNote() {
+  alert("hello");
+  event.stopPropagation();
 }
 
 // Event tiggers

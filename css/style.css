@@ -3,6 +3,8 @@
 body {
   font-family: "Poppins", sans-serif;
 }
+
+/* This all classes for the inputs  */
 .title-input,
 .note-input {
   outline: none;
@@ -23,4 +25,7 @@ body {
 }
 .notes-title {
   margin-bottom: 20px;
+}
+.outline {
+  outline: none;
 }
