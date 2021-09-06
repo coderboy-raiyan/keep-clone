@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+.title-input,
+.note-input {
+  outline: none;
+}
+.empty {
+  display: none;
+}
+.title-placeholder,
+.placeholder {
+  position: absolute;
+  top: 2px;
+  z-index: -1;
+}
+
+.notes-title,
+.main-notes {
+  position: relative;
+}
+.notes-title {
+  margin-bottom: 20px;
+}
