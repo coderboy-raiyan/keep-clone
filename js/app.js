@@ -36,7 +36,6 @@ function getNotes() {
 
 //creat the notes in div
 function createDivNotes(titleInput, notesInput) {
-  console.log(titleInput, notesInput);
   let col = document.createElement("div");
   col.className = "col-12 col-md-4 col-lg-4 main-col";
   col.innerHTML = `
@@ -51,10 +50,15 @@ function createDivNotes(titleInput, notesInput) {
           </div>
   `;
   allNotes.appendChild(col);
-  console.log(col);
-  delBtn();
+
+  // Delete Notes
+  let delBtn = col.querySelector(".btn-delete");
+  delBtn.addEventListener("click", () => {
+    col.remove();
+  });
 }
 
+// Edit Notes functions
 function editTitle() {
   let cardtitle = document.querySelectorAll(".card-title");
   cardtitle.forEach((card) => {
@@ -67,15 +71,6 @@ function editDes() {
   cardDes.forEach((card) => {
     card.setAttribute("contenteditable", "true");
     card.classList.add("outline");
-  });
-}
-// Delete note
-function delBtn() {
-  let parent = document.querySelector(".all-notes");
-  parent.addEventListener("click", (e) => {
-    if (e.target.classList.contains("btn-delete")) {
-      e.target.parentNode.parentNode.parentNode.remove();
-    }
   });
 }
 
