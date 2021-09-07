@@ -51,10 +51,18 @@ function createDivNotes(titleInput, notesInput) {
   `;
   allNotes.appendChild(col);
 
+  //If Some one types without notes title
+  let cardtitle = col.querySelector(".card-title");
+  if (cardtitle.innerHTML === "") {
+    cardtitle.innerHTML = "Empty";
+  }
   // Delete Notes
   let delBtn = col.querySelector(".btn-delete");
   delBtn.addEventListener("click", () => {
-    col.remove();
+    col.classList.add("del-tran");
+    setTimeout(() => {
+      col.remove();
+    }, 1000);
   });
 }
 
