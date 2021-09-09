@@ -16,8 +16,8 @@ function togglePalceholder(inputBoxs, inputPlaceHolders) {
 
 // Get the data from notesInput
 function getNotes() {
-  let notesInputValue = notesInput.innerHTML;
-  let titleInputValue = titleInput.innerHTML;
+  let notesInputValue = notesInput.innerText;
+  let titleInputValue = titleInput.innerText;
   if (notesInputValue == "" && titleInputValue == "") {
     console.log("Type a note please");
     notePlacehold.classList.remove("d-none");
@@ -41,11 +41,11 @@ function createDivNotes(titleInput, notesInput) {
   col.innerHTML = `
   <div class="card animate__animated animate__fadeInDown main-card" style="width: 100%; height: 100%">
             <div class="card-body">
-              <h5 class="card-title" onclick="editTitle()">${titleInput}</h5>
-              <p class="card-text" onclick="editDes()">
+              <h5 class="card-title note-title"  contenteditable="true">${titleInput}</h5>
+              <p class="card-text note-descrip"  contenteditable="true">
                ${notesInput}
               </p>
-              <button class="btn btn-warning btn-delete">Delete</button>
+              <button class="btn btn-warning" id="btn-delete">Delete</button>
             </div>
           </div>
   `;
@@ -57,28 +57,12 @@ function createDivNotes(titleInput, notesInput) {
     cardtitle.innerHTML = "Empty";
   }
   // Delete Notes
-  let delBtn = col.querySelector(".btn-delete");
+  let delBtn = col.querySelector("#btn-delete");
   delBtn.addEventListener("click", () => {
     col.classList.add("del-tran");
     setTimeout(() => {
       col.remove();
     }, 1000);
-  });
-}
-
-// Edit Notes functions
-function editTitle() {
-  let cardtitle = document.querySelectorAll(".card-title");
-  cardtitle.forEach((card) => {
-    card.setAttribute("contenteditable", "true");
-    card.classList.add("outline");
-  });
-}
-function editDes() {
-  let cardDes = document.querySelectorAll(".card-text");
-  cardDes.forEach((card) => {
-    card.setAttribute("contenteditable", "true");
-    card.classList.add("outline");
   });
 }
 

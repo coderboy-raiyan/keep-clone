@@ -23,6 +23,7 @@ body {
 .main-notes {
   position: relative;
 }
+
 .notes-title {
   margin-bottom: 20px;
 }
@@ -44,4 +45,8 @@ body {
 }
 .all-notes {
   overflow: hidden;
+}
+.note-descrip,
+.note-title {
+  outline: none;
 }
