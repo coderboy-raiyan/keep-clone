@@ -26,6 +26,7 @@ function getNotes() {
     // console.log(notesInputValue);
     // console.log(titleInputValue);
     createDivNotes(titleInputValue, notesInputValue);
+    addLocal(titleInputValue, notesInputValue);
     notePlacehold.classList.remove("d-none");
     titlePlacehold.classList.remove("d-none");
   }
@@ -60,11 +61,40 @@ function createDivNotes(titleInput, notesInput) {
   let delBtn = col.querySelector("#btn-delete");
   delBtn.addEventListener("click", () => {
     col.classList.add("del-tran");
-    setTimeout(() => {
-      col.remove();
-    }, 1000);
+    let keyNotes = getLocal();
+    let myNew = keyNotes.filter((keyNote) => keyNote.title !== titleInput);
+    localStorage.setItem("userNotes", JSON.stringify(myNew));
+    col.remove();
   });
 }
+// Local storage
+let getLocal = () => {
+  let userNotes = localStorage.getItem("userNotes");
+  let notes = [];
+  if (userNotes) {
+    notes = JSON.parse(userNotes);
+  } else {
+    userNotes;
+  }
+  return notes;
+};
+
+let addLocal = (inputTitle, notes) => {
+  let keyNotes = getLocal();
+  let notesObj = {};
+  notesObj.title = inputTitle;
+  notesObj.des = notes;
+  keyNotes.push(notesObj);
+  localStorage.setItem("userNotes", JSON.stringify(keyNotes));
+};
+
+let showLocalUI = () => {
+  let keyNotes = getLocal();
+  keyNotes.forEach((element) => {
+    createDivNotes(element.title, element.des);
+  });
+};
+showLocalUI();
 
 // Event tiggers
 notesInput.addEventListener("keyup", function () {
